@@ -1,0 +1,16 @@
+*{
+  margin: 0px auto;
+  padding: 0px;
+  font-family: monospace;;
+}
+div{
+  width: 307px;
+  margin: 0px auto;
+}
+  div h4, h1{
+    margin: 40px 0px;
+  }
+  h4, h1{
+    border: 1px solid black;
+    padding: 8px 60px;
+  }
