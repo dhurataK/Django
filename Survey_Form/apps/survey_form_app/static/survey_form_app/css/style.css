@@ -1,0 +1,33 @@
+*{
+  font-family: sans-serif;
+}
+div{
+  margin: 0px auto;
+  width: 970px;
+  background-color: lightblue;
+  padding-left: 30px;
+}
+h1, h2{
+  color: green;
+  margin-left: 30px;
+}
+h2{
+  border-bottom: 1px solid black;
+  width: 185px;
+}
+label{
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 250px;
+    text-align: left;;
+}
+input, span, select {
+  display: inline-block;
+  float: left;
+  margin:5px 0px;
+}
+textarea {
+  margin-top: 100px;
+  margin-left: -425px;
+}

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Survey Form</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'survey_form_app/css/style.css'%}" media="screen" title="no title">
+  </head>
+  <body>
+    <h1>Result</h1>
+    <h3>Thanks for submitting this form! You have submitted this form {{ request.session.counter }} times now.</h3>
+    <div>
+     <label>Name:</label><span> {{ request.session.name }} </span>
+     <label>Location:</label><span> {{ request.session.location }} </span>
+     <label>Favorite Language:</label><span> {{ request.session.language }} </span>
+     <label>Comment: </label><span> {{ request.session.comment }} </span>
+    </div>
+  </body>
+</html>
