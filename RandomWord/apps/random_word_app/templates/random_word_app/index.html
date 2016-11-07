@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Random Word Generator</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'random_word_app/css/style.css'%}" media="screen" title="no title">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  </head>
+  <body>
+    <div>
+      <h3>Random Word (attempt# {{ request.session.attempts }})</h3>
+      <h1>{{request.session.word}}</h1>
+      <form action="/generate" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Generate" class="btn btn-default">
+      </form>
+      <form action="/reset" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Reset" class="btn btn-default">
+      </form>
+    </div>
+  </body>
+</html>
