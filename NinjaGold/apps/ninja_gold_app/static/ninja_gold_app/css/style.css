@@ -1,0 +1,29 @@
+*{
+  font-family: cursive;
+}
+.box{
+  display: inline-block;
+  vertical-align: top;
+  background-color: #4caf50;
+  padding: 20px;
+  text-align: center;
+  width: 250px;
+  height: 175px;
+}
+span{
+  border: 3px solid black;
+  padding: 10px;
+}
+#activities{
+  border: 3px solid black;
+  height: 134px;
+  width: 1168px;
+  overflow-y: scroll;
+  padding-left:10px;
+}
+.red{
+  color: red;
+}
+.green{
+  color: green;
+}
