@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    {% load staticfiles %}
+    <title>Disappearing Ninjas</title>
+  </head>
+  <body>
+    <h1>Ninjass</h1>
+    {% if ninja == 'all'%}
+    <img src="{% static 'disappearing_ninjas_app/images/donatello.jpg' %}" alt="donatello" />
+    <img src="{% static 'disappearing_ninjas_app/images/leonardo.jpg' %}" alt="leonardo" />
+    <img src="{% static 'disappearing_ninjas_app/images/michelangelo.jpg' %}" alt="michelangelo" />
+    <img src="{% static 'disappearing_ninjas_app/images/raphael.jpg' %}" alt="raphael" />
+    {% else %}
+    <img src="{% static 'disappearing_ninjas_app/images/'%}{{ninja}}.jpg" alt="{{ ninja }}" />
+    {% endif %}
+
+  </body>
+</html>
