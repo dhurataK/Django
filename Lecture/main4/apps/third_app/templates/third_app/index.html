@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Third app</title>
+  </head>
+  <body>
+    <h1>Hello world</h1>
+    {% for blog in blogs %}
+      <h5>{{blog.title}}</h5>
+      <p>{{blog.blog}}</p>
+      {% for comment in blog.comment_set.all %}
+      <p>{{ comment.comment }} </p>
+      {% endfor %}
+      <form action="/comments/{{blog.id}}" method="post">
+        {% csrf_token %}
+        <textarea name="comment" rows="8" cols="40"></textarea>
+        <input type="submit" value="Enter a Comment">
+      </form>
+    {% endfor %}
+    <form action="/blogs" method="post">
+      {% csrf_token %}
+      <label>Title: </label>
+      <input type="text" name="title" value="">
+      <textarea name="blog" rows="8" cols="40"></textarea>
+      <input type="submit" value="Enter Blog">
+    </form>
+  </body>
+</html>
