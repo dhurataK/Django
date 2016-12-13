@@ -1,0 +1,15 @@
+*{
+  font-family: cursive;
+}
+div{
+  width: 500px;
+  color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.green{
+  background-color: green;
+}
+.red{
+  background-color: red;
+}

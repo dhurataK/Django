@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Email Validation</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'email_app/css/style.css'%}">
+  </head>
+  <body>
+    <h1>Email Validation</h1>
+      {% if request.session.wrong %}
+        <div class="red">
+          <p>{{request.session.wrong }}</p>
+        </div>
+      {% endif %}
+    <form action="/store" method="post">
+      {% csrf_token %}
+      Email: <input type="text" name="email" value="">
+      <input type="submit" name="" value="Submit">
+    </form>
+  </body>
+</html>

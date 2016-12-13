@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Success Page</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'email_app/css/style.css'%}">
+  </head>
+  <body>
+    {% if request.session.right %}
+      <div class="green">
+        <p>{{request.session.right}}</p>
+      </div>
+    {% endif %}
+
+    <h1>Email Addresses Entered:</h1>
+    {% for email in emails %}
+      <p>{{email.email }} | {{email.created_at}} <a href="/delete/{{email.id}}"> delete</a></p>
+
+    {% endfor %}
+  </body>
+</html>
