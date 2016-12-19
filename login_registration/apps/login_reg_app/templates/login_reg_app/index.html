@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <title>Login Reg | Home </title>
+  </head>
+  <body>
+    <div id="container">
+      <h1>Users</h1>
+      {% for u in user %}
+        <p>{{u.first_name}} {{ u.last_name }}</p>
+      {% endfor %}
+      <hr>
+      <div>
+        <h1>Registration</h1>
+        {% if messages %}
+          {% for message in messages %}
+            <p class="{{message.tags}}">{{message}}</p>
+          {% endfor %}
+        {% endif %}
+        <form action="/register" method="post">
+          {% csrf_token %}
+          <label>First Name:</label><input type="text" name="first_name" value=""><br>
+          <label>Last Name:</label> <input type="text" name="last_name" value=""><br>
+          <label>Email</label><input type="text" name="email" value=""><br>
+          <label>Password</label><input type="password" name="password" value=""><br>
+          <label>Confirm pw:</label><input type="password" name="cw_password" value=""><br>
+          <input type="submit" value="Register" class="submit">
+        </form>
+      </div>
+      <div>
+        <h1>Login</h1>
+        <form action="/login" method="post">
+          {% csrf_token %}
+          <label>Email</label><input type="text" name="email" value=""><br>
+          <label>Password</label><input type="password" name="password" value=""><br>
+          <input type="submit" value="Login" class="submit">
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
