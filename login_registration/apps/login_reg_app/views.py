@@ -14,16 +14,15 @@ def success(request):
 
 def register(request):
     if request.method == 'POST':
-        result = User.objects.register(request.POST)
+        result = User.objects.register_validations(request.POST)
         if not result[0]:
             for error in result[1]:
                 messages.error(request, error)
-            return redirect('/')
     return redirect('/')
 
 def login(request):
     if request.method == 'POST':
-        result = User.objects.login(request.POST)
+        result = User.objects.login_validations(request.POST)
         if result[0]:# if result[0] == True
             request.session['first_name'] = result[1].first_name
             return redirect('/success')
