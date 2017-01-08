@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from .models import Course
 # Create your views here.
 def index(request):
@@ -9,7 +10,7 @@ def index(request):
 
 def create(request):
     Course.objects.create(name=request.POST['name'], description=request.POST['description'])
-    return redirect('/')
+    return redirect(reverse('index'))
 
 def destroy(request, id):
     course_to_delete = Course.objects.get(id = id)
@@ -17,4 +18,4 @@ def destroy(request, id):
         return render(request, 'course_apps/delete_course.html', { 'course' : course_to_delete })
     # Otherwise it's a post and let's delete the course...
     course_to_delete.delete()
-    return redirect('/')
+    return redirect(reverse('index'))

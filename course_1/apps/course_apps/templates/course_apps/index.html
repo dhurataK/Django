@@ -8,7 +8,7 @@
   </head>
   <body>
     <h1>Add a new course</h1>
-    <form action="/add_course" method="post">
+    <form action="{% url 'create' %}" method="post">
       {% csrf_token %}
       <p>Name: <input type="text" name="name" value=""></p>
       Description:<br>
@@ -29,7 +29,7 @@
           <td>{{course.name}}</td>
           <td>{{course.description}}</td>
           <td>{{course.created_at | date:"F jS, Y"}}</td>
-          <td><a href="/destroy/{{course.id}}">remove</a></td>
+          <td><a href="{% url 'destroy' id=course.id %}">remove</a></td>
         </tr>
       {% endfor %}
     </table>
