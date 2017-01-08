@@ -6,36 +6,34 @@ EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9\.\+_-]+@[a-zA-Z0-9\._-]+\.[a-zA-Z]*$')
 # Create your models here.
 
 class UserManager(models.Manager):#here we are inheriting the Manager class
-    def register_validations(self, data):#any no. of arguments
-        errors = []
-        #Validations for first_name
-        if not data['first_name']:
-            errors.append('First name is required!')
-        elif len(data['first_name']) <= 2:
-            errors.append('First name must be longer than 2 characters')
-        elif bool(re.search(r'\d', data['first_name'])):
-            errors.append('First name must contain only letters!')
-        # Validations for last_name
-        if not data['last_name']:
-            errors.append('Last name is required')
-        elif len(data['last_name']) <= 2:
-            errors.append('Last name must be longer than 2 characters')
-        elif bool(re.search(r'\d', data['last_name'])):
-            errors.append('Last name must contain only letters!')
-        #Validations for email
-        if not data['email']:
-            errors.append('Email is required')
-        elif not EMAIL_REGEX.match(data['email']):
-            errors.append('Invalid email!')
-        #Validations for password
-        if not data['password']:
-            errors.append('Password is required')
-        elif len(data['password']) < 8:
+    def reg_input_validation(self, data):
+        errors =[]
+        if not data['first_name'] or not data['last_name'] or not data['email'] or not data['password'] or not data['cw_password']:
+            errors.append('Fields are required!')
+        if len(data['first_name'])  <= 2 or len(data['last_name']) <= 2:
+            errors.append("Please include a first and/or last name longer than two characters.")
+        if bool(re.search(r'\d', data['first_name'])) or bool(re.search(r'\d', data['last_name'])):
+            errors.append("First and/or last name must contain only letters!")
+        if not re.match(EMAIL_REGEX,data['email']):
+            errors.append('Email not valid!')
+        if len(data['password']) < 8:
             errors.append('Password must be at least 8 characters!')
-        elif data['password'] != data['cw_password']:
+        if data['password'] != data['cw_password']:
             errors.append('Passwords must match!')
-        if errors:
-            return(False, errors)
+        return errors
+
+    def log_input_validation(self, data):
+        errors =[]
+        if not data['email'] or not data['password']:
+            errors.append('Fields are required!')
+        if not re.match(EMAIL_REGEX,data['email']):
+            errors.append('Email not valid!')
+        return errors
+
+    def register_validation(self, data):#any no. of arguments
+        errors = self.reg_input_validation(data)
+        if len(errors)>0:
+            return (False, errors)
         else:
             password = data['password'].encode()
             pw_hashed = bcrypt.hashpw(password,bcrypt.gensalt())
@@ -47,19 +45,10 @@ class UserManager(models.Manager):#here we are inheriting the Manager class
             )
             return (True,user)
 
-    def login_validations(self, data):
-        errors = []
-        #Validations for email
-        if data['email']:
-            if not re.match(EMAIL_REGEX,data['email']):
-                errors.append('Email not valid!')
-        else:
-            errors.append('Email is empty!')
-        #Validations for password
-        if not data['password']:
-            errors.append('Password is empty!')
-        # if there are errors than stop don't let login
-        if errors:
+    def login_validation(self, data):
+        errors = self.log_input_validation(data)
+        # # if there are errors than stop don't let login
+        if len(errors)>0:
             return(False, errors)
         else:
             try:
