@@ -1,0 +1,46 @@
+* {
+  font-family: monospace;
+}
+
+input {
+  display: block;
+}
+
+input.table-action {
+  display: inline;
+}
+
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+table {
+    margin-top: 15px;
+    width: 80%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+th,
+td {
+  border: 1px solid black;
+}
+
+td {
+  padding: 0 5px;
+}
+
+form.delete input {
+  background-color: red;
+  color: white;
+  display: inline;
+  width: 60px;
+  border: 1px solid;
+}
+
+form.delete  {
+  display: inline;
+}

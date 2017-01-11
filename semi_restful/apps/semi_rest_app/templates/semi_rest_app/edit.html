@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'products_app/css/styles.css'%}">
+    <title>Edit Product | Semi RESTful</title>
+  </head>
+  <body>
+    <h2>Edit Product {{ product.id }}</h2>
+    <form action="/products/{{product.id}}/" method='post'>
+      {% csrf_token %}
+      Name: <input type="text" name="name" value="{{product.name}}">
+      Description: <input type="text" name="description" value="{{product.description}}">
+      Price: <input type="float" name="price" value="{{product.price}}">
+      <input type="submit" value="Update">
+    </form>
+    <a href="/products/{{ product.id }}/">Show</a>
+    <a href="/products/">Back</a>
+  </body>
+</html>

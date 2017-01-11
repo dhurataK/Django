@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'products_app/css/styles.css' %}">
+    <title>Create a new product | Semi RESTFul Demo</title>
+  </head>
+  <body>
+    <h2>Add a new product</h2>
+      <form action="/products/" method='post'>
+        {% csrf_token %}
+        Name: <input type="text" name="name">
+        Description: <input type="text" name="description">
+        Price: <input type="float" name="price">
+        <input type="submit" value="Create">
+      </form>
+      <a href="/products">Go back</a>
+  </body>
+</html>

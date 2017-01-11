@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'products_app/css/styles.css' %}">
+    <title>Product Info | Semi RESTf</title>
+  </head>
+  <body>
+    <h2>Product {{ product.id }}</h2>
+    <p>Name: {{ product.name }}</p>
+    <p>Description: {{ product.description }}</p>
+    <p>Price: {{ product.price }}</p>
+    <a href="/products/{{ product.id }}/edit/">Edit</a>
+    <a href="/products/">Back</a>
+  </body>
+</html>
