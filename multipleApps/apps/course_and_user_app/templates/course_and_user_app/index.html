@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <h1>User dashboard!</h1>
+    {% for user in users %}
+       {{ user }}
+    {% endfor %}
+    <hr>
+       <form action="{% url 'courses_users:users_to_course' %}" method="POST">
+           {% csrf_token %}
+
+           <select style="display: inline-block" name="user_id">
+               {% for user in users%}
+             <option value='{{user.id}}'>{{user.first_name}}</option>
+                {%endfor%}
+           </select>
+
+           <select style="display: inline-block" name="course_id">
+               {%for course in courses %}
+             <option value={{course.id}}>{{course.name}}</option>
+               {%endfor%}
+           </select>
+
+           <input type="submit" name="submit" value="Add user to the course">
+       </form>
+       <hr>
+       <br>
+       <br>
+       <br>
+       <table border="1" width='800'>
+           <tr>
+               <th>Course</th>
+               <th>Title</th>
+               <th>Number of Users</th>
+           </tr>
+           {%for course in courses%}
+           {%for count in counter%}
+           <tr>
+               <td>{{course.id}}</td>
+               <td>{{course.name}}</td>
+               <td>{{count}}</td>
+           </tr>
+           {%endfor%}
+           {%endfor%}
+       </table>
+       <br>
+       <br>
+       <br>
+       <br>
+       <a href="{% url 'courses_users:index' %}">Return to dashboard</a> |
+       <a href="{% url 'courses:index'%}">Create a course</a>
+  </body>
+</html>
