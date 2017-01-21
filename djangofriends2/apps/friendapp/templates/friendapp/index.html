@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Friendships</title>
+  </head>
+  <body>
+    <h1> I've got some friends? </h1>
+    {% for user in users %}
+      <p>
+        {{user.first_name}}
+        {{user.last_name}}
+      </p>
+    {% endfor %}
+  </body>
+</html>
