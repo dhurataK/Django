@@ -1,0 +1,45 @@
+*{
+  font-family: cursive;
+}
+#container{
+  width: 900px;
+  padding: 10px;
+}
+div{
+  width: 700px;
+  display: inline-block;
+  vertical-align: top;
+}
+input{
+  display:block;
+}
+input.submit{
+  background-color: #2c6490;
+  color: white;
+  border: 1px solid;
+}
+.error{
+  color: red;
+}
+header {
+  background-color: rgba(207, 232, 248, 0.47);
+  height: 45px;
+  padding: 10px 0px;
+}
+    header h1{
+      width: 300px;
+      display: inline;
+      margin-left: 10px;
+    }
+    header div{
+      float:right;
+      width:320px;
+      margin-top: 13px;
+    }
+#recent_books{
+  border: 3px solid black;
+  height: 210px;
+  width: 450px;
+  overflow-y: scroll;
+  padding-left: 10px;
+}

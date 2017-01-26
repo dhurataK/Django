@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Book Review</title>
+  </head>
+  <body>
+    <header>
+      <div class="header_right">
+        <a href="{% url 'books:index' %}">Home</a> |
+        <a href="{% url 'login_reg:logout' %}">Logout</a>
+      </div>
+    </header>
+    <h2>Add a New Book Title and a Review:</h2>
+    {% if messages %}
+      {% for message in messages %}
+        <p class="{{message.tags}}">{{message}}</p>
+      {% endfor %}
+    {% endif %}
+    <form action="{% url 'books:add_book_review' %}" method="post">
+      {% csrf_token %}
+      <label><strong>Book Title</strong></label>
+      <input type="text" name="book_title" placeholder='Book Title'> <br>
+      <label><strong>Author Name: </strong></label>
+              <label>Choose from list:</label>
+              <select style="display: inline-block" name="author_id">
+                 <option value="None">Select author</option>
+                 <option value="Ismaili">Ismaili</option>
+              </select> <br>
+              <label> Or add a new author: </label>
+              <input type="text" name="new_author"> <br>
+
+      <label><strong>Review: </strong></label> <br>
+            <textarea name="review" rows="8" cols="80"></textarea> <br>
+            <label>Rating:</label>
+            <select name="rating">
+              <option value="None">Rate</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select> stars.
+      <input type="submit" value="Add Book and Review">
+    </form>
+  </body>
+</html>
